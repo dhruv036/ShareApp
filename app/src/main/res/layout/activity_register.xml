@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.dhruv.fillsharing.ui.viewmodel.RegisterAndLoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.RegisterActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/registerimg"
+            app:layout_constraintBottom_toTopOf="@id/horizontal3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="@id/vertical1"
+            app:layout_constraintRight_toRightOf="@id/vertical2"
+            app:layout_constraintTop_toBottomOf="@id/horizontal3"
+            app:layout_constraintBottom_toTopOf="@id/horizontal2"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="26sp"
+                android:textColor="#110C0B"
+                android:text="Register"
+                android:textAlignment="center"
+                android:fontFamily="@font/montserrat_bold"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:textColor="#645654"
+                android:text="Please enter the details below to continue."
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Enter Name"
+                android:layout_marginTop="10dp"
+                android:textColor="#110C0B"
+                android:fontFamily="@font/montserrat_medium"
+                />
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/round_bg_blue"
+                android:fontFamily="@font/montserrat_bold"
+                android:minHeight="48dp"
+                android:text="@={user.name}"
+                android:paddingVertical="8dp"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:textColor="#110C0B"
+                android:text="Enter Phone number"
+                android:fontFamily="@font/montserrat_medium"
+                />
+
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/round_bg_blue"
+                android:fontFamily="@font/montserrat_bold"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:paddingVertical="8dp"
+                android:text="@={user.phone}"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:textColor="#110C0B"
+                android:text="Enter Password"
+                android:fontFamily="@font/montserrat_medium"
+                />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/round_bg_blue"
+                android:fontFamily="@font/montserrat_bold"
+                android:inputType="textPassword"
+                android:text="@={user.password}"
+                android:minHeight="48dp"
+                android:paddingVertical="8dp"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp"
+                    android:text="Submit"
+                    android:layout_gravity="center"
+                    android:textColor="#110C0B"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:paddingHorizontal="25dp"
+                    android:backgroundTint="#A8D672"
+                    android:onClick="@{()->user.onRegisterUser()}"
+                    android:layout_marginTop="15dp"
+                    />
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

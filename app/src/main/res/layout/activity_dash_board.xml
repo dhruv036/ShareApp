@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="notes"
+            type="com.dhruv.fillsharing.ui.viewmodel.DashBoardViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".98" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".02" />
+
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/vertical1"
+            app:layout_constraintRight_toRightOf="@id/vertical2"
+            app:layout_constraintTop_toBottomOf="@id/horizontal1"
+            android:text="Hello Dhruv"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#A8D672"
+            android:textSize="28sp"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/vertical1"
+            app:layout_constraintRight_toRightOf="@id/vertical2"
+            app:layout_constraintTop_toBottomOf="@id/nameLabel"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/nameLabel"
+            app:layout_constraintRight_toRightOf="@id/vertical2"
+            app:layout_constraintLeft_toLeftOf="@id/vertical1"
+            android:text="Add Files"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addPublicFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Public"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                app:cornerRadius="20dp"
+                android:background="@null"
+                android:textSize="13sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/black"
+                android:layout_marginHorizontal="10dp"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addPrivateFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Private"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="10dp"
+                app:cornerRadius="20dp"
+                android:textSize="13sp"
+                android:textAllCaps="false"
+                android:background="@null"
+                android:backgroundTint="#F7D44C"
+
+                />
+        </LinearLayout>
+<!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--           android:id="@+id/uploadBt"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            app:layout_constraintRight_toLeftOf="@id/vertical2"-->
+<!--            android:layout_margin="10dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/horizontal2"-->
+<!--            app:icon="@android:drawable/ic_input_add"-->
+<!--            />-->
+        <LinearLayout
+            android:id="@+id/btLay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="@id/vertical1"
+            app:layout_constraintRight_toRightOf="@id/vertical2"
+            app:layout_constraintTop_toBottomOf="@id/horizontal3"
+            android:weightSum="3"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nameLabel"
+                app:layout_constraintRight_toRightOf="@id/vertical2"
+                app:layout_constraintLeft_toLeftOf="@id/vertical1"
+                android:text="Show Files"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/allBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@null"
+                app:cornerRadius="20dp"
+                android:onClick="@{()->notes.fetchAllNotes()}"
+                android:textSize="13sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#EB7A53"
+                android:layout_marginHorizontal="6dp"
+                />
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/publicBt"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Public"-->
+<!--                android:layout_weight="1"-->
+<!--                android:textColor="@color/white"-->
+<!--                app:cornerRadius="20dp"-->
+<!--                android:textSize="13sp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:background="@null"-->
+<!--                android:backgroundTint="#98B7DB"-->
+<!--                android:layout_marginHorizontal="5dp"-->
+<!--                />-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/privateBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Private"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textAllCaps="false"
+                app:cornerRadius="20dp"
+                android:background="@null"
+                android:backgroundTint="#98B7DB"
+                android:layout_marginHorizontal="5dp"
+                />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/docList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/vertical1"
+            app:layout_constraintRight_toRightOf="@id/vertical2"
+            tools:listitem="@layout/note_child"
+            app:layout_constraintTop_toBottomOf="@id/btLay"
+            app:layout_constraintBottom_toTopOf="@id/horizontal2"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

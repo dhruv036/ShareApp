@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+    <data>
+        <variable
+            name="user"
+            type="com.dhruv.fillsharing.ui.viewmodel.MainViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/splash"
+        app:layout_constraintBottom_toTopOf="@id/horizontal3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal1" />
+
+    <TextView
+        android:id="@+id/mainLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Splash_Main_Text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="@id/vertical1"
+        app:layout_constraintRight_toRightOf="@id/vertical2"
+        app:layout_constraintTop_toBottomOf="@id/horizontal3" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Sign up"
+        app:cornerRadius="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/black"
+        android:onClick="@{()->user.goToSignUp()}"
+        android:paddingHorizontal="35dp"
+        android:paddingVertical="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/signInBt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/horizontal2"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signInBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Sign In"
+        android:fontFamily="@font/montserrat_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cornerRadius="10dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        app:backgroundTint="#F6ECC9"
+        android:onClick="@{()->user.goToSignIn()}"
+        android:paddingHorizontal="35dp"
+        android:paddingVertical="15dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/signUpBt"
+       app:layout_constraintBottom_toTopOf="@id/horizontal2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".7" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
