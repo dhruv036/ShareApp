@@ -10,9 +10,11 @@ import androidx.lifecycle.viewModelScope
 import com.dhruv.fillsharing.ui.DashBoardActivity
 import com.dhruv.fillsharing.util.User
 import com.dhruv.fillsharing.repository.NoteRepo
+import com.dhruv.fillsharing.ui.MainActivity
 import com.dhruv.fillsharing.util.LoginType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class RegisterAndLoginViewModel(val repo: NoteRepo,val context:Context): ViewModel() {
@@ -20,6 +22,7 @@ class RegisterAndLoginViewModel(val repo: NoteRepo,val context:Context): ViewMod
     val name = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
+    var isRegistered = MutableLiveData<Boolean>()
 
     fun onRegisterUser(){
         Log.e("user"," register name ${name.value} , phone ${phone.value} , password ${password.value}")
@@ -27,16 +30,25 @@ class RegisterAndLoginViewModel(val repo: NoteRepo,val context:Context): ViewMod
            if (name.value != null && phone.value != null && password.value != null){
                val phoneLen = phone.value!!.length
                if (phoneLen == 10){
-                  val isRegister : Boolean = repo.registerUser(
-                       User(
-                       uid = uid.toString(),
-                       password = password.value!!,
-                       phone = phone.value!!,
-                       name = name.value!!
-                        )
-                   )
-                   val result = if (isRegister)  "Register" else "not Register"
-                   showMessage("User $result")
+                   viewModelScope.launch {
+                       isRegistered = repo.registerUser(
+                           User(
+                               uid = uid.toString(),
+                               password = password.value!!,
+                               phone = phone.value!!,
+                               name = name.value!!
+                           )
+                       )
+                       withContext(Dispatchers.Main) {
+                          isRegistered.observeForever(androidx.lifecycle.Observer {
+                              it?.let {
+                                 val result = if (it) "Registered please Login now" else "not Register"
+                                  showMessage("User $result")
+                                  context.startActivity(Intent(context,MainActivity::class.java))
+                              }
+                          })
+                       }
+                   }
                }else{ showMessage("Wrong Phone Number") }
            }else{ showMessage("Incorrect Details") }
     }

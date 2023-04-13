@@ -93,7 +93,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
                 android:textColor="#110C0B"
-                android:text="Enter Phone number"
+                android:text="Enter Phone number / User-Id"
                 android:fontFamily="@font/montserrat_medium"
                 />
 

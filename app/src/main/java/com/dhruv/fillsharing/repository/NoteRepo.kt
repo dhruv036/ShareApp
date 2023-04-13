@@ -26,17 +26,18 @@ class NoteRepo : CoroutineScope {
     val db = Firebase.firestore
     val storage = Firebase.storage
     var isSuccessfull = MutableLiveData<Boolean>()
-    var publicNotelistAll = MutableLiveData<MutableList<Note>>()
-
-    fun registerUser(user: User): Boolean {
-        var isRegister = false
-        db.collection("users").document(user.phone).set(user)
-            .addOnSuccessListener {
-                isRegister = true
-            }
-            .addOnFailureListener { e ->
-                isRegister = false
-            }
+    private var publicNotelistAll = MutableLiveData<MutableList<Note>>()
+    private var isRegister = MutableLiveData<Boolean>()
+    fun registerUser(user: User): MutableLiveData<Boolean> {
+        launch {
+            db.collection("users").document(user.phone).set(user)
+                .addOnSuccessListener {
+                    isRegister.postValue(true)
+                }
+                .addOnFailureListener { e ->
+                    isRegister.postValue(false)
+                }
+        }
         return isRegister
     }
 

@@ -14,6 +14,7 @@ import com.dhruv.fillsharing.util.ViewModelTypes
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
+
     val repo: NoteRepo = NoteRepo()
     val viewModel: MainViewModel by viewModels(){
         ViewModelFactory(repo, this,ViewModelTypes.MAINVIEW_MODEL)

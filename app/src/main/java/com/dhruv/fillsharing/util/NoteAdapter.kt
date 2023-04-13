@@ -50,11 +50,11 @@ class NoteAdapter(var list: MutableList<Note>, var context : Context) : Recycler
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = list.get(position)
-        holder.title.setText(note.noteName)
+        holder.title.setText("Title : ${note.noteName}")
         Firebase.firestore.collection("users").document(note.userPhone).get().addOnSuccessListener {
             Log.d(TAG, "${it?.data?.get("name")?.toString()}")
             val name = it?.data?.get("name")?.toString()
-            holder.phone.setText(name)
+            holder.phone.setText("User : $name")
         }
        holder.saveBt.setOnClickListener{
             downloadFile(note.noteUrl,note.noteName)
